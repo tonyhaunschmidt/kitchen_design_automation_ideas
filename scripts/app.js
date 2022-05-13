@@ -64,8 +64,11 @@ function init() {
     //LEFT OVER (FILLERS/SPACE ETC)
 
 
-  }
 
+  }
+  //do the other kitchen types in the same way to help with more complex pseudo coding  
+  //test for basic kitchen with set cooker/F/F sink etc then start adding for variables- cooker type/ sink type/ etc.
+  //add things like WM/DW etc
 
   console.log(remainingWallSpace)
   console.log(kitchen)
