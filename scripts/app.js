@@ -8,6 +8,8 @@ function init() {
   //  300HL = {doorline: HL, doorsize: 300, cabinetsize: 300, CC: 0.2, price: 30.36}
   //  can incluce space object
 
+  // --- work out skeleton first and then fill in with units
+
 
   //specific case
   const kitchen = []
@@ -19,6 +21,7 @@ function init() {
 
   //configure kitchen
 
+  //SKELETON
   const remainingWallSpace = [...walls]
   if (kitchenType === kitchenTypes[1]) { //U shape
 
@@ -54,7 +57,24 @@ function init() {
 
 
     //COOKER
-    //place cooker
+    if (cookerWall === 1) {
+      kitchen[0].unshift('CS640') //find position
+      remainingWallSpace[0] -= 640
+    }
+    if (cookerWall === 2) {
+      kitchen[1].push('CS650')  //find position
+      remainingWallSpace[2] -= 640
+    }
+    if (cookerWall === 3) {
+      kitchen[2].push('CS650')  //find position
+      remainingWallSpace[2] -= 640
+    }
+
+    for (let i = 0; i < remainingWallSpace.length; i++) {
+      if (remainingWallSpace[i] < 0) {
+        console.log(`insufficient space on wall ${i + 1} for a fridge/freezer`)
+      }
+    }
 
     //SINK
     //place sink unit
