@@ -1,8 +1,10 @@
 function init() {
 
-  // selections
   const doorSizes = [300, 350, 400, 450, 500, 600]
   const kitchenTypes = ['U', 'L', 'I', 'Galley']
+
+  // selections
+  const sinkTypes = ['single', 'bowlAndHalf']
 
   // list different units out as objects i.e.
   //  300HL = {doorline: HL, doorsize: 300, cabinetsize: 300, CC: 0.2, price: 30.36}
@@ -12,12 +14,19 @@ function init() {
 
 
   //specific case
-  const kitchen = []
+  const skeleton = []
+  //choices
   const kitchenType = kitchenTypes[1]
   const walls = [2000, 2000, 2000]
-  const fridgeWall = 3
-  const cookerWall = 2
-  const sinkWall = 3
+  const fridgeWall = 1
+  const cookerWall = 1
+  const sinkWall = 1
+  const sinkChoice = sinkTypes[1]
+  let sinkUnitSize
+  if (sinkChoice === sinkTypes[0]) sinkUnitSize = 500
+  if (sinkChoice === sinkTypes[1]) sinkUnitSize = 600
+
+  //option for swapping sink and cooker? anything else need swapped
 
   //configure kitchen
 
@@ -28,7 +37,7 @@ function init() {
     //maybe run initial checks first -  asking for same things on one run and not enough space- alert minimum requirements etc. 
 
     //corners
-    kitchen.push(['BC631'], ['BC631', 'BC631'], ['BC631'])
+    skeleton.push(['BC631'], ['BC631', 'BC631'], ['BC631'])
     remainingWallSpace[0] -= 631
     remainingWallSpace[1] -= 631 + 631
     remainingWallSpace[2] -= 631
@@ -41,11 +50,11 @@ function init() {
 
     //F/F
     if (fridgeWall === 1) {
-      kitchen[0].unshift('FF650')
+      skeleton[0].unshift('FF650')
       remainingWallSpace[0] -= 650
     }
     if (fridgeWall === 3) {
-      kitchen[2].push('FF650')
+      skeleton[2].push('FF650')
       remainingWallSpace[2] -= 650
     }
 
@@ -58,15 +67,15 @@ function init() {
 
     //COOKER
     if (cookerWall === 1) {
-      kitchen[0].unshift('CS640') //find position
+      skeleton[0].splice(-1, 0, 'CS640')
       remainingWallSpace[0] -= 640
     }
     if (cookerWall === 2) {
-      kitchen[1].push('CS650')  //find position
-      remainingWallSpace[2] -= 640
+      skeleton[1].splice(1, 0, 'CS640')
+      remainingWallSpace[1] -= 640
     }
     if (cookerWall === 3) {
-      kitchen[2].push('CS650')  //find position
+      skeleton[2].splice(1, 0, 'CS640')
       remainingWallSpace[2] -= 640
     }
 
@@ -78,11 +87,28 @@ function init() {
 
     //SINK
     //place sink unit
+    if (sinkWall === 1) {
+      skeleton[0].splice(-1, 0, `SU${sinkUnitSize}`)
+      remainingWallSpace[0] -= sinkUnitSize
+    }
+    if (sinkWall === 2) {
+      skeleton[1].splice(1, 0, `SU${sinkUnitSize}`)
+      remainingWallSpace[1] -= sinkUnitSize
+    }
+    if (sinkWall === 3) {
+      skeleton[2].splice(1, 0, `SU${sinkUnitSize}`)
+      remainingWallSpace[2] -= sinkUnitSize
+    }
 
-    //REMAINING UNITS
+    for (let i = 0; i < remainingWallSpace.length; i++) {
+      if (remainingWallSpace[i] < 0) {
+        console.log(`insufficient space on wall ${i + 1} for a sink unit`)
+      }
+    }
 
-    //LEFT OVER (FILLERS/SPACE ETC)
 
+    //build around the skeleton.
+    //pseudo code all the rules and steps that need to happen and then order then code
 
 
   }
@@ -91,6 +117,6 @@ function init() {
   //add things like WM/DW etc
 
   console.log(remainingWallSpace)
-  console.log(kitchen)
+  console.log(skeleton)
 }
 init()
