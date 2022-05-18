@@ -1,0 +1,71 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.kitchen{
+  height: 600px;
+  width: 600px;
+  background-color: green;
+}
+
+.wall_one{
+  background-color: greenyellow;
+  width: 100%;
+  height: 100px;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.wall_two{
+  background-color: greenyellow;
+  width: 100px;
+  height: 100%;
+  position: relative;
+  bottom: 100px;
+  left: 500px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+}
+
+.wall_three{
+  background-color: greenyellow;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  bottom: 40%;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.corner{
+  background-color: hotpink;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+}
+
+.cooker{
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+}
+
+.fridge{
+  background-color: lightblue;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+}
+
+.sink{
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+}
+
+
+
