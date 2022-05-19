@@ -30,6 +30,14 @@ function init() {
 
   //configure kitchen
 
+  //first work out walls- [y, 3000, 3000, 3000, n] (y/n for return wall)
+  //then work out windows/doors etc- [[1200, W1200, 400], [3000], [2000, D900, 100]]
+  //then place key items - [[300, S900, 1269, BC631], [BC631, 549, CS640, 549, BC631], [631, 700, FF650, 1019]]
+  //numbers with non symbles are free space. corner units are automatically there. The other key units are dragged in. 
+  //check is done on each drag and drop and gives warning if no space or doesn't comply
+  //maybe snap to somewhere it can go
+  //then works out full kitchen array- populated with the object noted above. from this you can draw prices and different ranges, BOQs, cubic capicities etc. 
+
   //SKELETON
   const remainingWallSpace = [...walls]
   if (kitchenType === kitchenTypes[1]) { //U shape
